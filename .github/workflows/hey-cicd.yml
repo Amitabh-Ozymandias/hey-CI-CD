@@ -1,13 +1,14 @@
 name: Session 16 CI Demo
 
 on:
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
 
 jobs:
 
-  # -------------------------
-  # JOB 1: HELLO
-  # -------------------------
   hello:
     runs-on: ubuntu-latest
 
@@ -22,9 +23,6 @@ jobs:
         run: uname -a
 
 
-  # -------------------------
-  # JOB 2: SECRET
-  # -------------------------
   secret-job:
     runs-on: ubuntu-latest
 
@@ -41,9 +39,6 @@ jobs:
           fi
 
 
-  # -------------------------
-  # JOB 3: ARTIFACT
-  # -------------------------
   artifact-job:
     runs-on: ubuntu-latest
 
