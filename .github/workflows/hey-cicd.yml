@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
+
   hello:
     runs-on: ubuntu-latest
 
@@ -19,3 +20,29 @@ jobs:
 
       - name: Show operating system
         run: uname -a
+
+  system-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show hostname
+        run: hostname
+
+      - name: Show current user
+        run: whoami
+
+      - name: Show working directory
+        run: pwd
+
+  environment-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show environment
+        run: env
+
+      - name: Show Git version
+        run: git --version
+
+      - name: Show Python version
+        run: python3 --version
