@@ -1,12 +1,13 @@
-name: Hello GitHub Actions
+name: Session 16 CI Demo
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
+
+  # -------------------------
+  # JOB 1: HELLO
+  # -------------------------
   hello:
     runs-on: ubuntu-latest
 
@@ -20,19 +21,10 @@ jobs:
       - name: Show operating system
         run: uname -a
 
-      - name: Checkout code
-        uses: actions/checkout@v6
 
-      - name: Run build
-        run: |
-          chmod +x build.sh
-          ./build.sh
-
-      - name: Show build files
-        run: |
-          echo "Build output:"
-          ls -la build
-
+  # -------------------------
+  # JOB 2: SECRET
+  # -------------------------
   secret-job:
     runs-on: ubuntu-latest
 
@@ -48,8 +40,11 @@ jobs:
             exit 1
           fi
 
+
+  # -------------------------
+  # JOB 3: ARTIFACT
+  # -------------------------
   artifact-job:
-    needs: hello
     runs-on: ubuntu-latest
 
     steps:
@@ -61,7 +56,12 @@ jobs:
           chmod +x build.sh
           ./build.sh
 
-      - name: Upload artifact
+      - name: Show build files
+        run: |
+          echo "Build output:"
+          ls -la build
+
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: session16-build
